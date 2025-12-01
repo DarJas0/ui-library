@@ -1,15 +1,48 @@
 {
   "name": "ui-library",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A React component library with Symfony integration",
   "type": "module",
+  "main": "./dist/ui-library.cjs",
+  "module": "./dist/ui-library.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/ui-library.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/ui-library.cjs"
+      }
+    },
+    "./hydration": {
+      "import": {
+        "types": "./dist/hydration.d.ts",
+        "default": "./dist/hydration.mjs"
+      },
+      "require": {
+        "types": "./dist/hydration.d.ts",
+        "default": "./dist/hydration.cjs"
+      }
+    },
+    "./styles": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "adapters"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -p tsconfig.lib.json && BUILD_LIB=true vite build",
+    "build:lib": "BUILD_LIB=true vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",

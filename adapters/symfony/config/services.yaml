@@ -1,0 +1,5 @@
+services:
+    UiLibrary\SymfonyAdapter\Twig\UiComponentExtension:
+        tags:
+            - { name: twig.extension }
+

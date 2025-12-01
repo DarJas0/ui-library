@@ -1,80 +1,125 @@
-## UI Library (React + TypeScript + Vite + Storybook + Tailwind v4)
+## UI Library
 
-A small component library featuring a Button, Header, and an upgraded Alert (popup-style) component. Built with React, TypeScript, Storybook, and Tailwind CSS v4.
+Eine moderne React-Komponentenbibliothek mit Symfony-Integration. Perfekt für Projekte, die React im Frontend und Symfony im Backend verwenden.
 
-### Tech stack
-- **React + TypeScript**
-- **Vite** (dev/build)
-- **Storybook** (component docs)
-- **Tailwind CSS v4** (utility styling)
+### Features
 
-### Quick start
-- **Install**
+- 🎨 **Moderne UI-Komponenten**: Button, Alert, Badge, Card, Input, Select, Switch, Checkbox, Radio, Hero, CTA
+- ⚡ **React + TypeScript**: Vollständig typisiert mit TypeScript
+- 🎨 **Tailwind CSS v4**: Moderne Utility-First Styling
+- 🔌 **Symfony Integration**: Nahtlose Integration mit Symfony und Twig
+- 🚀 **Zero-Config Hydration**: Automatische Hydration von Server-seitig generierten Komponenten
+- 📦 **npm Package**: Einfache Installation und Verwendung
+
+### Installation
+
+#### Frontend (npm)
+
 ```bash
-npm i
+npm install ui-library
 ```
-- **Run app (Vite)**
+
+#### Backend (Symfony/Composer)
+
 ```bash
+composer require ui-library/symfony-adapter
+```
+
+### Quick Start
+
+#### Frontend
+
+```javascript
+// 1. CSS importieren
+import 'ui-library/styles';
+
+// 2. Hydration aktivieren (für Symfony-Integration)
+import { hydrate } from 'ui-library/hydration';
+hydrate();
+
+// Oder Komponenten direkt verwenden
+import { Button, Alert } from 'ui-library';
+
+function App() {
+  return (
+    <div>
+      <Button label="Klicken" color="red" variant="solid" />
+      <Alert variant="info" title="Hinweis">Nachricht</Alert>
+    </div>
+  );
+}
+```
+
+#### Backend (Symfony/Twig)
+
+```twig
+{# In deinem Twig-Template #}
+{{ ui_component('Button', {
+    'label': 'Klicken Sie hier',
+    'color': 'red',
+    'variant': 'solid',
+    'size': 'medium'
+}) }}
+
+{{ ui_component('Alert', {
+    'title': 'Wichtig',
+    'variant': 'info',
+    'dismissible': true
+}) }}
+    Dies ist eine wichtige Nachricht.
+{{ ui_component_end('Alert') }}
+```
+
+### Verfügbare Komponenten
+
+- **Button**: `color` (red | purple), `variant` (solid | outline), `size` (small | medium | large)
+- **Alert**: `variant` (info | success | warning | error), `dismissible`, `title`
+- **Badge**: `color`, `variant` (soft | solid | outline), `size` (sm | md)
+- **Card**: `variant` (elevated | outline | soft), `accent` (none | purple | red)
+- **Input**: `size`, `variant`, `color`, `label`, `helperText`
+- **Select**: `size`, `color`, `label`, `helperText`
+- **Switch**: `color`, `checked`, `label`
+- **Checkbox**: `color`, `label`, `helperText`
+- **Radio**: `color`, `label`, `helperText`
+- **Hero**: `backgroundImage`, `align` (left | center), `overlay`
+- **Cta**: `headline`, `imageSrc`, `primaryLabel`, `body`
+
+### Dokumentation
+
+- [Installation und Verwendung](INSTALLATION.md) - Detaillierte Installationsanleitung
+- [Struktur-Analyse](STRUCTURE_ANALYSIS.md) - Projektstruktur und Best Practices
+
+### Tech Stack
+
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **Vite** (Build Tool)
+- **Storybook** (Komponenten-Dokumentation)
+- **Symfony 6/7** (Backend-Integration)
+
+### Entwicklung
+
+```bash
+# Dependencies installieren
+npm install
+
+# Development Server starten
 npm run dev
-```
-- **Run Storybook**
-```bash
+
+# Storybook starten
 npm run storybook
-```
-- **Build**
-```bash
+
+# Library bauen
 npm run build
+
+# Tests
+npm test
 ```
 
-### Tailwind CSS (v4) setup
-- Global import is in `src/styles/tailwind.css`:
-```css
-@import "tailwindcss";
-```
-- App entry imports Tailwind in `src/main.tsx`:
-```ts
-import './styles/tailwind.css';
-```
-- Vite integrates Tailwind via plugin in `vite.config.ts`:
-```ts
-import tailwind from '@tailwindcss/vite';
-// ...
-plugins: [react(), tailwind()],
-```
-- Storybook also loads Tailwind:
-  - Plugin in `.storybook/main.ts`
-  - CSS import in `.storybook/preview.ts`
+### Lizenz
 
-Optional brand tokens are defined in `tailwind.config.ts` under `theme.extend.colors.brand` (e.g., `brand.red`, `brand.purple`).
+MIT
 
-### Components
-- **Button**: `color` ("red" | "purple"), `variant` ("solid" | "outline"), `size` ("small" | "medium" | "large").
-- **Header**: responsive layout, uses Button color scheme for actions (Log in/Sign up/Log out).
-- **Alert**: `variant` ("info" | "success" | "warning" | "error"), optional `dismissible`, `onClose`.
+### Beitragen
 
-Example (dismissible Alert):
-```tsx
-<Alert title="Heads up" variant="info" dismissible onClose={() => console.log('closed')}>
-  Message body goes here.
-<\/Alert>
-```
-
-### Attribution (sources and licenses)
-- **Heroicons (alert icons)**
-  - Source: `https://heroicons.com` (Tailwind Labs)
-  - License: MIT — `https://github.com/tailwindlabs/heroicons/blob/master/LICENSE`
-  - Icons used: information-circle, check-circle, exclamation-triangle, x-circle (20px)
-
-- **Storybook example SVG (Header logo)**
-  - Source: Storybook React + Vite template (Example/Header)
-  - Repo: `https://github.com/storybookjs/storybook`
-  - License: MIT — `https://github.com/storybookjs/storybook/blob/next/LICENSE`
-
-### Scripts
-- **dev**: Vite dev server
-- **storybook**: Storybook dev server
-- **build**: Type-check and Vite build
-
-### Notes
-- Tailwind v4 uses a single global `@import "tailwindcss";` instead of `@tailwind base; @tailwind components; @tailwind utilities;`.
-- The Header and Alert are styled to align with the Button’s brand colors (red gradient `#FF5050 → #FF6A6A`, purple `#4C28D3`).
+Beiträge sind willkommen! Bitte öffne ein Issue oder einen Pull Request.
