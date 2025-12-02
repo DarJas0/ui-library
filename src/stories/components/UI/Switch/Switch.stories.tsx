@@ -6,10 +6,21 @@ const meta: Meta<typeof Switch> = {
   title: "UI/Switch",
   component: Switch,
   tags: ["autodocs"],
+  argTypes: {
+    accent: {
+      control: "select",
+      options: ["primary", "secondary", "success", "neutral"],
+    },
+    size: {
+      control: "select",
+      options: ["small", "medium"],
+    },
+  },
   args: {
     defaultChecked: true,
-    color: "purple",
+    accent: "secondary",
     label: "Notifications",
+    size: "medium",
   },
 };
 
@@ -17,8 +28,27 @@ export default meta;
 type Story = StoryObj<typeof Switch>;
 
 export const Default: Story = {};
-export const Red: Story = { args: { color: "red" } };
-export const Off: Story = { args: { defaultChecked: false } };
+
+export const Primary: Story = {
+  args: {
+    accent: "primary",
+    label: "Primary Accent",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "small",
+    label: "Small Switch",
+  },
+};
+
+export const Off: Story = {
+  args: {
+    defaultChecked: false,
+    label: "Disabled State",
+  },
+};
 
 export const Controlled: Story = {
   render: (args) => {

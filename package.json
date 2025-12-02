@@ -44,13 +44,17 @@
     "build-storybook": "storybook build",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.16",
-    "clsx": "^2.1.1",
+  "peerDependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "clsx": "^2.1.1"
+  },
   "devDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "@chromatic-com/storybook": "^4.1.1",
     "@eslint/js": "^9.36.0",
     "@storybook/addon-a11y": "^9.1.13",

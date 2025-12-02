@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       className={clsx(
-        "relative flex h-[70vh] min-h-[520px] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#111827] via-[#020617] to-[#111827]",
+        "relative flex h-[70vh] min-h-[520px] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-secondary via-[#0F172A] to-secondary",
         className
       )}
       {...rest}
@@ -42,15 +42,15 @@ export const Hero: React.FC<HeroProps> = ({
             className="h-full w-full object-cover"
           />
           {overlay && (
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/70 to-secondary/90" />
           )}
         </div>
       )}
 
       {/* Soft vignette */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-secondary/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-secondary/70 to-transparent" />
       </div>
 
       {/* Content container */}
@@ -92,12 +92,12 @@ export const HeroEyebrow: React.FC<HeroEyebrowProps> = ({
 }) => (
   <div
     className={clsx(
-      "inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-gray-200/80 backdrop-blur",
+      "inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-gray-200/90 backdrop-blur",
       className
     )}
     {...rest}
   >
-    <span className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-[#FF5050] to-[#FF6A6A]" />
+    <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
     {children}
   </div>
 );
@@ -111,7 +111,7 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({
 }) => (
   <h1
     className={clsx(
-      "text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.05]",
+      "text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.1]",
       className
     )}
     {...rest}
@@ -129,7 +129,7 @@ export const HeroSubtitle: React.FC<HeroSubtitleProps> = ({
 }) => (
   <p
     className={clsx(
-      "text-pretty text-base text-gray-200/90 sm:text-lg md:text-xl",
+      "text-pretty text-base text-gray-300 sm:text-lg md:text-xl leading-relaxed",
       className
     )}
     {...rest}
@@ -146,7 +146,7 @@ export const HeroActions: React.FC<HeroActionsProps> = ({
   ...rest
 }) => (
   <div
-    className={clsx("flex flex-wrap items-center gap-4", className)}
+    className={clsx("flex flex-wrap items-center gap-4 pt-4", className)}
     {...rest}
   >
     {children}

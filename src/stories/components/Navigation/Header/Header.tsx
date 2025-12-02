@@ -38,12 +38,12 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
           {user ? (
             <>
               <span className="hidden sm:inline text-sm text-gray-600">Welcome, <b className="font-semibold text-gray-900">{user.name}</b></span>
-              <Button size="small" variant="outline" color="purple" onClick={onLogout} label="Log out" />
+              <Button size="small" variant="outline" accent="secondary" onClick={onLogout} label="Log out" />
             </>
           ) : (
             <>
-              <Button size="small" variant="outline" color="purple" onClick={onLogin} label="Log in" />
-              <Button size="small" variant="solid" color="red" onClick={onCreateAccount} label="Sign up" />
+              <Button size="small" variant="outline" accent="secondary" onClick={onLogin} label="Log in" />
+              <Button size="small" variant="solid" accent="primary" onClick={onCreateAccount} label="Sign up" />
             </>
           )}
         </div>

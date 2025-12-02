@@ -1,58 +1,94 @@
 import React from "react";
 import clsx from "clsx";
 
-type BadgeColor = "gray" | "purple" | "red" | "green" | "yellow";
-type BadgeVariant = "soft" | "solid" | "outline";
-type BadgeSize = "sm" | "md";
+export type BadgeVariant = "soft" | "solid" | "outline";
+export type BadgeAccent = "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
+export type BadgeSize = "small" | "medium";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  color?: BadgeColor;
+  /**
+   * The visual style of the badge.
+   * @default "soft"
+   */
   variant?: BadgeVariant;
+  /**
+   * The color accent of the badge.
+   * @default "neutral"
+   */
+  accent?: BadgeAccent;
+  /**
+   * The size of the badge.
+   * @default "medium"
+   */
   size?: BadgeSize;
+  /**
+   * Optional icon to display.
+   */
+  icon?: React.ReactNode;
 }
 
-const base = "inline-flex items-center font-medium rounded-full";
+const baseStyles = "inline-flex items-center justify-center font-bold uppercase tracking-wider rounded-full whitespace-nowrap transition-colors duration-200";
 
-const sizeCls: Record<BadgeSize, string> = {
-  sm: "text-[11px] leading-4 px-2 py-0.5",
-  md: "text-xs leading-5 px-2.5 py-1",
+const sizeStyles: Record<BadgeSize, string> = {
+  small: "text-[10px] leading-3 px-2 py-0.5 gap-1",
+  medium: "text-xs leading-4 px-2.5 py-1 gap-1.5",
 };
 
-const palette = {
-  gray: {
-    soft: "bg-gray-100 text-gray-800",
-    solid: "bg-gray-800 text-white",
-    outline: "ring-1 ring-inset ring-gray-300 text-gray-800",
+const variantStyles: Record<BadgeVariant, Record<BadgeAccent, string>> = {
+  soft: {
+    primary: "bg-primary/10 text-primary",
+    secondary: "bg-secondary/10 text-secondary",
+    success: "bg-green-100 text-green-700",
+    warning: "bg-yellow-100 text-yellow-700",
+    error: "bg-red-100 text-red-700",
+    info: "bg-blue-100 text-blue-700",
+    neutral: "bg-gray-100 text-gray-700",
   },
-  purple: {
-    soft: "bg-[#4C28D3]/10 text-[#4C28D3]",
-    solid: "bg-[#4C28D3] text-white",
-    outline: "ring-1 ring-inset ring-[#4C28D3] text-[#4C28D3]",
+  solid: {
+    primary: "bg-primary text-white",
+    secondary: "bg-secondary text-white",
+    success: "bg-green-600 text-white",
+    warning: "bg-yellow-500 text-white",
+    error: "bg-red-600 text-white",
+    info: "bg-blue-600 text-white",
+    neutral: "bg-gray-800 text-white",
   },
-  red: {
-    soft: "bg-[#FF5050]/10 text-[#FF5050]",
-    solid: "bg-[#FF5050] text-white",
-    outline: "ring-1 ring-inset ring-[#FF5050] text-[#FF5050]",
+  outline: {
+    primary: "ring-1 ring-inset ring-primary text-primary",
+    secondary: "ring-1 ring-inset ring-secondary text-secondary",
+    success: "ring-1 ring-inset ring-green-600 text-green-700",
+    warning: "ring-1 ring-inset ring-yellow-500 text-yellow-700",
+    error: "ring-1 ring-inset ring-red-600 text-red-700",
+    info: "ring-1 ring-inset ring-blue-600 text-blue-700",
+    neutral: "ring-1 ring-inset ring-gray-300 text-gray-700",
   },
-  green: {
-    soft: "bg-green-100 text-green-800",
-    solid: "bg-green-600 text-white",
-    outline: "ring-1 ring-inset ring-green-300 text-green-700",
-  },
-  yellow: {
-    soft: "bg-yellow-100 text-yellow-800",
-    solid: "bg-yellow-500 text-white",
-    outline: "ring-1 ring-inset ring-yellow-300 text-yellow-700",
-  },
-} as const;
+};
 
-export const Badge: React.FC<BadgeProps> = ({ color = "gray", variant = "soft", size = "md", className, children, ...rest }) => {
+export const Badge: React.FC<BadgeProps> = ({
+  variant = "soft",
+  accent = "neutral",
+  size = "medium",
+  icon,
+  className,
+  children,
+  ...rest
+}) => {
   return (
-    <span className={clsx(base, sizeCls[size], palette[color][variant], className)} {...rest}>
-      {children}
+    <span
+      className={clsx(
+        baseStyles,
+        sizeStyles[size],
+        variantStyles[variant][accent],
+        className
+      )}
+      {...rest}
+    >
+      {icon && <span className="flex-shrink-0">{icon}</span>}
+      <span>{children}</span>
     </span>
   );
 };
 
 export default Badge;
+
 

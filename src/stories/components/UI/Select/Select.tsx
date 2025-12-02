@@ -1,14 +1,16 @@
 import React from "react";
 import clsx from "clsx";
 
-type SelectSize = "small" | "medium" | "large";
-type SelectColor = "purple" | "red";
+export type SelectSize = "small" | "medium" | "large";
+export type SelectVariant = "default" | "error" | "success";
+export type SelectAccent = "primary" | "secondary" | "neutral";
 
 export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "size" | "color"> {
   label?: string;
   helperText?: string;
   size?: SelectSize;
-  color?: SelectColor;
+  variant?: SelectVariant;
+  accent?: SelectAccent;
 }
 
 const sizeClasses: Record<SelectSize, string> = {
@@ -17,22 +19,40 @@ const sizeClasses: Record<SelectSize, string> = {
   large: "h-11 text-base pl-4 pr-10",
 };
 
-const ringByColor: Record<SelectColor, string> = {
-  purple: "focus:ring-[#4C28D3]/50 focus:border-[#4C28D3]",
-  red: "focus:ring-[#FF5050]/50 focus:border-[#FF5050]",
+const accentStyles: Record<SelectAccent, string> = {
+  primary: "focus:border-primary focus:ring-primary/20",
+  secondary: "focus:border-secondary focus:ring-secondary/20",
+  neutral: "focus:border-gray-500 focus:ring-gray-500/20",
+};
+
+const variantStyles: Record<SelectVariant, string> = {
+  default: "border-gray-300",
+  success: "border-green-500 focus:border-green-500 focus:ring-green-500/20 text-green-900",
+  error: "border-red-500 focus:border-red-500 focus:ring-red-500/20 text-red-900",
 };
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(
-  { id, label, helperText, size = "medium", color = "purple", className, disabled, children, ...rest },
+  {
+    id,
+    label,
+    helperText,
+    size = "medium",
+    variant = "default",
+    accent = "secondary",
+    className,
+    disabled,
+    children,
+    ...rest
+  },
   ref
 ) {
   const selectId = id || React.useId();
   const describedBy = helperText ? `${selectId}-help` : undefined;
 
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className={clsx("flex w-full flex-col gap-1.5", className)}>
       {label && (
-        <label htmlFor={selectId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-800")}>{label}</label>
+        <label htmlFor={selectId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-700")}>{label}</label>
       )}
       <div className="relative">
         <select
@@ -41,11 +61,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function 
           disabled={disabled}
           aria-describedby={describedBy}
           className={clsx(
-            "block w-full appearance-none rounded-lg border border-gray-300 bg-white shadow-sm outline-none transition focus:ring-2",
+            "block w-full appearance-none rounded-lg border bg-white shadow-sm outline-none transition-all duration-200 focus:ring-4",
             sizeClasses[size],
-            ringByColor[color],
-            disabled && "cursor-not-allowed bg-gray-100 text-gray-500 border-gray-200",
-            className
+            variant === "default" ? accentStyles[accent] : "",
+            variantStyles[variant],
+            disabled && "cursor-not-allowed bg-gray-50 text-gray-500 border-gray-200 shadow-none"
           )}
           {...rest}
         >
@@ -59,7 +79,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function 
         </span>
       </div>
       {helperText && (
-        <p id={describedBy} className="text-xs text-gray-600">{helperText}</p>
+        <p id={describedBy} className={clsx("text-xs", variant === "error" ? "text-red-600" : variant === "success" ? "text-green-600" : "text-gray-500")}>{helperText}</p>
       )}
     </div>
   );

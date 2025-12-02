@@ -1,13 +1,15 @@
 import React from "react";
 import clsx from "clsx";
 
-type SwitchColor = "purple" | "red";
+export type SwitchAccent = "primary" | "secondary" | "success" | "neutral";
+export type SwitchSize = "small" | "medium";
 
 export interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
-  color?: SwitchColor;
+  accent?: SwitchAccent;
+  size?: SwitchSize;
   label?: string;
 }
 
@@ -15,7 +17,8 @@ export const Switch: React.FC<SwitchProps> = ({
   checked,
   defaultChecked,
   onChange,
-  color = "purple",
+  accent = "secondary",
+  size = "medium",
   label,
   className,
   disabled,
@@ -26,8 +29,6 @@ export const Switch: React.FC<SwitchProps> = ({
   const [uncontrolled, setUncontrolled] = React.useState(!!defaultChecked);
   const current = isControlled ? !!checked : uncontrolled;
 
-  const activeTrack = color === "purple" ? "bg-[#4C28D3]" : "bg-[#FF5050]";
-
   const toggle = () => {
     if (disabled) return;
     const next = !current;
@@ -37,6 +38,28 @@ export const Switch: React.FC<SwitchProps> = ({
 
   const buttonId = id || React.useId();
   const labelId = label ? `${buttonId}-label` : undefined;
+
+  const accentStyles: Record<SwitchAccent, string> = {
+    primary: "bg-primary",
+    secondary: "bg-secondary",
+    success: "bg-green-600",
+    neutral: "bg-gray-600",
+  };
+
+  const sizeStyles = {
+    small: {
+      track: "h-5 w-9",
+      thumb: "h-3.5 w-3.5",
+      translate: "translate-x-4",
+    },
+    medium: {
+      track: "h-6 w-11",
+      thumb: "h-5 w-5",
+      translate: "translate-x-5",
+    },
+  };
+
+  const currentSize = sizeStyles[size];
 
   return (
     <div className={clsx("inline-flex items-center gap-3", className)}>
@@ -50,10 +73,11 @@ export const Switch: React.FC<SwitchProps> = ({
         onClick={toggle}
         disabled={disabled}
         className={clsx(
-          "relative inline-flex h-6 w-11 items-center rounded-full transition outline-none focus:ring-2 focus:ring-offset-2",
-          current ? activeTrack : "bg-gray-300",
-          color === "purple" && current && "focus:ring-[#4C28D3]/40",
-          color === "red" && current && "focus:ring-[#FF5050]/40",
+          "relative inline-flex items-center rounded-full transition-colors duration-200 outline-none focus:ring-2 focus:ring-offset-2",
+          currentSize.track,
+          current ? accentStyles[accent] : "bg-gray-300",
+          accent === "secondary" && current && "focus:ring-secondary/40",
+          accent === "primary" && current && "focus:ring-primary/40",
           !current && "focus:ring-gray-300/50",
           disabled && "opacity-60 cursor-not-allowed"
         )}
@@ -61,13 +85,16 @@ export const Switch: React.FC<SwitchProps> = ({
       >
         <span
           className={clsx(
-            "inline-block h-5 w-5 transform rounded-full bg-white shadow ring-1 ring-black/5 transition",
-            current ? "translate-x-5" : "translate-x-1"
+            "inline-block transform rounded-full bg-white shadow ring-1 ring-black/5 transition-transform duration-200",
+            currentSize.thumb,
+            current ? currentSize.translate : "translate-x-0.5"
           )}
         />
       </button>
       {label && (
-        <span id={labelId} className={clsx("text-sm select-none", disabled ? "text-gray-400" : "text-gray-800")}
+        <span 
+          id={labelId} 
+          className={clsx("text-sm select-none font-medium", disabled ? "text-gray-400" : "text-gray-700")}
           onClick={toggle}
           role="button"
           tabIndex={0}
@@ -81,4 +108,5 @@ export const Switch: React.FC<SwitchProps> = ({
 };
 
 export default Switch;
+
 

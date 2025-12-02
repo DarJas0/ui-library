@@ -1,16 +1,18 @@
 import React from "react";
 import clsx from "clsx";
 
-type InputSize = "small" | "medium" | "large";
-type InputVariant = "default" | "error" | "success";
-type InputColor = "purple" | "red";
+export type InputSize = "small" | "medium" | "large";
+export type InputVariant = "default" | "error" | "success";
+export type InputAccent = "primary" | "secondary" | "neutral";
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "color"> {
   label?: string;
   helperText?: string;
   size?: InputSize;
   variant?: InputVariant;
-  color?: InputColor;
+  accent?: InputAccent;
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
 }
 
 const sizeClasses: Record<InputSize, string> = {
@@ -19,14 +21,16 @@ const sizeClasses: Record<InputSize, string> = {
   large: "h-11 text-base px-4",
 };
 
-const borderByColor: Record<InputColor, string> = {
-  purple: "border-[#4C28D3]/50 focus:border-[#4C28D3] focus:ring-[#4C28D3]/50",
-  red: "border-[#FF5050]/50 focus:border-[#FF5050] focus:ring-[#FF5050]/50",
+const accentStyles: Record<InputAccent, string> = {
+  primary: "focus:border-primary focus:ring-primary/20",
+  secondary: "focus:border-secondary focus:ring-secondary/20",
+  neutral: "focus:border-gray-500 focus:ring-gray-500/20",
 };
 
-const variantBorder: Record<Exclude<InputVariant, 'default'>, string> = {
-  success: "border-green-400",
-  error: "border-red-400",
+const variantStyles: Record<InputVariant, string> = {
+  default: "border-gray-300",
+  success: "border-green-500 focus:border-green-500 focus:ring-green-500/20 text-green-900 placeholder:text-green-400",
+  error: "border-red-500 focus:border-red-500 focus:ring-red-500/20 text-red-900 placeholder:text-red-400",
 };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -36,7 +40,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
     helperText,
     size = "medium",
     variant = "default",
-    color = "purple",
+    accent = "secondary",
+    icon,
+    iconPosition = "left",
     className,
     disabled,
     ...rest
@@ -47,32 +53,45 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
   const describedBy = helperText ? `${inputId}-help` : undefined;
 
   return (
-    <div className={clsx("flex w-full flex-col gap-1")}> 
+    <div className={clsx("flex w-full flex-col gap-1.5", className)}> 
       {label && (
-        <label htmlFor={inputId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-800")}>{label}</label>
+        <label htmlFor={inputId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-700")}>{label}</label>
       )}
-      <input
-        id={inputId}
-        ref={ref}
-        disabled={disabled}
-        aria-describedby={describedBy}
-        className={clsx(
-          "block w-full rounded-lg border bg-white shadow-sm outline-none transition focus:ring-2 placeholder:text-gray-400",
-          sizeClasses[size],
-          variant === "default" ? borderByColor[color] : variantBorder[variant as Exclude<InputVariant,'default'>],
-          variant === "success" && "focus:ring-green-400",
-          variant === "error" && "focus:ring-red-400",
-          disabled && "cursor-not-allowed bg-gray-100 text-gray-500 border-gray-200",
-          className
+      <div className="relative">
+        {icon && iconPosition === "left" && (
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+            {icon}
+          </div>
         )}
-        {...rest}
-      />
+        <input
+          id={inputId}
+          ref={ref}
+          disabled={disabled}
+          aria-describedby={describedBy}
+          className={clsx(
+            "block w-full rounded-lg border bg-white shadow-sm outline-none transition-all duration-200 focus:ring-4",
+            sizeClasses[size],
+            variant === "default" ? accentStyles[accent] : "",
+            variantStyles[variant],
+            icon && iconPosition === "left" && "pl-10",
+            icon && iconPosition === "right" && "pr-10",
+            disabled && "cursor-not-allowed bg-gray-50 text-gray-500 border-gray-200 shadow-none"
+          )}
+          {...rest}
+        />
+        {icon && iconPosition === "right" && (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+            {icon}
+          </div>
+        )}
+      </div>
       {helperText && (
-        <p id={describedBy} className={clsx("text-xs", variant === "error" ? "text-red-600" : variant === "success" ? "text-green-600" : "text-gray-600")}>{helperText}</p>
+        <p id={describedBy} className={clsx("text-xs", variant === "error" ? "text-red-600" : variant === "success" ? "text-green-600" : "text-gray-500")}>{helperText}</p>
       )}
     </div>
   );
 });
 
 export default Input;
+
 

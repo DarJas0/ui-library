@@ -6,17 +6,17 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ["autodocs"],
   argTypes: {
-    size: { control: "inline-radio", options: ["small", "medium", "large"] },
-    variant: { control: "inline-radio", options: ["default", "success", "error"] },
-    color: { control: "inline-radio", options: ["purple", "red"] },
+    size: { control: "select", options: ["small", "medium", "large"] },
+    variant: { control: "select", options: ["default", "success", "error"] },
+    accent: { control: "select", options: ["primary", "secondary", "neutral"] },
   },
   args: {
-    label: "Label",
-    placeholder: "Placeholder",
-    helperText: "Helper text",
+    label: "Email Address",
+    placeholder: "you@example.com",
+    helperText: "We'll never share your email.",
     size: "medium",
     variant: "default",
-    color: "purple",
+    accent: "secondary",
   },
 };
 
@@ -24,8 +24,35 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {};
-export const Error: Story = { args: { variant: "error", helperText: "There is an error" } };
-export const Success: Story = { args: { variant: "success", helperText: "Looks good" } };
-export const LargeRed: Story = { args: { size: "large", color: "red" } };
+
+export const WithIcon: Story = {
+  args: {
+    icon: <span>@</span>,
+    iconPosition: "left",
+  },
+};
+
+export const ErrorState: Story = {
+  args: {
+    variant: "error",
+    helperText: "Please enter a valid email address.",
+    defaultValue: "invalid-email",
+  },
+};
+
+export const SuccessState: Story = {
+  args: {
+    variant: "success",
+    helperText: "Username is available!",
+    defaultValue: "johndoe",
+  },
+};
+
+export const PrimaryAccent: Story = {
+  args: {
+    accent: "primary",
+    label: "Primary Accent",
+  },
+};
 
 

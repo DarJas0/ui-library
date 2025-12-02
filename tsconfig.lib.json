@@ -1,25 +1,47 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": false,
-    "jsx": "react-jsx",
+    /* Build Output */
+    "outDir": "./dist",
+    "declarationDir": "./dist",
     "declaration": true,
     "declarationMap": true,
-    "outDir": "./dist",
+    "emitDeclarationOnly": true,
+
+    /* Module System */
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    
+    /* React JSX */
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    
+    /* Type Checking */
     "strict": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    
+    /* Advanced */
+    "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": false
   },
-  "include": ["lib/**/*"],
-  "exclude": ["node_modules", "dist", "src"]
+  "include": [
+    "lib/**/*.ts",
+    "lib/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src",
+    "**/*.stories.tsx",
+    "**/*.test.tsx"
+  ]
 }
-

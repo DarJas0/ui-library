@@ -41,7 +41,7 @@ function DemoContent() {
         <CardBody>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input label="Name" placeholder="Your name" />
-            <Input label="Email" type="email" placeholder="email@example.com" color="red" />
+            <Input label="Email" type="email" placeholder="email@example.com" accent="primary" />
             <Select label="Country">
               <option>Germany</option>
               <option>Switzerland</option>
@@ -55,8 +55,8 @@ function DemoContent() {
         </CardBody>
         <CardFooter>
           <div className="flex justify-end gap-2">
-            <Button size="small" variant="outline" color="purple" label="Cancel" />
-            <Button size="small" variant="solid" color="red" label="Save" />
+            <Button size="small" variant="outline" accent="secondary" label="Cancel" />
+            <Button size="small" variant="solid" accent="primary" label="Save" />
           </div>
         </CardFooter>
       </Card>
@@ -68,13 +68,13 @@ function DemoContent() {
         <CardBody>
           <div className="flex flex-wrap items-center gap-2">
             <Badge>Default</Badge>
-            <Badge color="purple" variant="solid">Purple</Badge>
-            <Badge color="red" variant="outline">Red</Badge>
-            <Badge color="green" variant="soft">Green</Badge>
+            <Badge accent="secondary" variant="solid">Purple</Badge>
+            <Badge accent="primary" variant="outline">Red</Badge>
+            <Badge accent="success" variant="soft">Green</Badge>
           </div>
           <div className="mt-4 flex items-center gap-6">
             <Radio name="plan" label="Basic" />
-            <Radio name="plan" label="Pro" color="red" />
+            <Radio name="plan" label="Pro" accent="primary" />
           </div>
         </CardBody>
       </Card>
@@ -115,8 +115,8 @@ export const WithHero: Story = {
             </HeroSubtitle>
           </div>
           <HeroActions>
-            <Button label="Explore components" variant="solid" color="purple" />
-            <Button label="View docs" variant="outline" color="purple" />
+            <Button label="Explore components" variant="solid" accent="secondary" />
+            <Button label="View docs" variant="outline" accent="secondary" />
           </HeroActions>
         </HeroContent>
       </Hero>
@@ -158,7 +158,7 @@ export const Dark: Story = {
           <CardBody>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Input label="Name" placeholder="Your name" />
-              <Input label="Email" type="email" placeholder="email@example.com" color="red" />
+              <Input label="Email" type="email" placeholder="email@example.com" accent="primary" />
               <Select label="Country">
                 <option>Germany</option>
                 <option>Switzerland</option>
@@ -172,8 +172,8 @@ export const Dark: Story = {
           </CardBody>
           <CardFooter className="border-gray-800">
             <div className="flex justify-end gap-2">
-              <Button size="small" variant="outline" color="purple" label="Cancel" />
-              <Button size="small" variant="solid" color="red" label="Save" />
+              <Button size="small" variant="outline" accent="secondary" label="Cancel" />
+              <Button size="small" variant="solid" accent="primary" label="Save" />
             </div>
           </CardFooter>
         </Card>

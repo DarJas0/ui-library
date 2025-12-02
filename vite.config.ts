@@ -15,7 +15,7 @@ const libraryConfig = defineConfig({
     lib: {
       entry: {
         index: resolve(dirname, 'lib/index.ts'),
-        hydration: resolve(dirname, 'lib/hydration.ts'),
+        hydration: resolve(dirname, 'lib/hydration.tsx'),
       },
       name: 'UiLibrary',
       formats: ['es', 'cjs'],

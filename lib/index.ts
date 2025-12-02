@@ -19,7 +19,7 @@ export {
   Radio, 
   type CheckboxProps, 
   type RadioProps,
-  type ControlColor
+  type ControlAccent
 } from './components/CheckboxRadio/CheckboxRadio';
 export { 
   Hero,

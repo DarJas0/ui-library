@@ -34,8 +34,8 @@ export const Default: Story = {
           system components.
         </HeroSubtitle>
         <HeroActions className="justify-center">
-          <Button label="Get started" variant="solid" color="purple" />
-          <Button label="View docs" variant="outline" color="purple" />
+          <Button label="Get started" variant="solid" accent="primary" />
+          <Button label="View docs" variant="outline" accent="neutral" className="!text-white !border-white hover:!bg-white/10" />
         </HeroActions>
       </HeroContent>
     </Hero>
@@ -58,7 +58,7 @@ export const LeftAligned: Story = {
           </HeroSubtitle>
         </div>
         <HeroActions>
-          <Button label="Get started" variant="solid" color="red" />
+          <Button label="Get started" variant="solid" accent="primary" />
         </HeroActions>
       </HeroContent>
     </Hero>
@@ -74,8 +74,8 @@ export const NoImage: Story = {
           You can also use a plain gradient or solid color background.
         </HeroSubtitle>
         <HeroActions className="justify-center">
-          <Button label="Primary action" variant="solid" color="purple" />
-          <Button label="Secondary action" variant="outline" color="purple" />
+          <Button label="Primary action" variant="solid" accent="secondary" />
+          <Button label="Secondary action" variant="outline" accent="neutral" className="!text-white !border-white hover:!bg-white/10" />
         </HeroActions>
       </HeroContent>
     </Hero>

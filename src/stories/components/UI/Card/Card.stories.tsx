@@ -8,54 +8,120 @@ const meta: Meta<typeof Card> = {
   tags: ["autodocs"],
   args: {
     variant: "elevated",
+    padding: "normal",
+  },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["elevated", "outline", "soft", "ghost"],
+    },
+    accent: {
+      control: "select",
+      options: ["none", "primary", "secondary"],
+    },
+    padding: {
+      control: "select",
+      options: ["none", "compact", "normal", "relaxed"],
+    },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-export const Elevated: Story = {
+export const Default: Story = {
   render: (args) => (
-    <Card {...args} hoverable accent="purple">
-      <CardHeader title="Card title" subtitle="Optional subtitle" actions={<Button size="small" variant="outline" color="purple" label="Action" />} />
+    <Card {...args}>
+      <CardHeader 
+        title="Default Card" 
+        subtitle="Standard elevated style" 
+        action={<Button size="small" variant="outline" label="Options" />} 
+      />
       <CardBody>
-        Body content goes here with a modern elevated surface and a subtle brand accent.
+        This is the default card style. It uses a subtle shadow and white background to lift content from the page.
       </CardBody>
       <CardFooter>
-        <div className="flex gap-2 justify-end w-full">
-          <Button size="small" variant="outline" color="purple" label="Cancel" />
-          <Button size="small" variant="solid" color="red" label="Save" />
-        </div>
+        <Button size="small" variant="outline" label="Cancel" />
+        <Button size="small" variant="solid" label="Save" />
       </CardFooter>
     </Card>
   )
 };
 
-export const Outline: Story = {
-  args: { variant: "outline" },
+export const ValanticPrimary: Story = {
+  args: {
+    accent: "primary",
+    hoverable: true,
+  },
   render: (args) => (
     <Card {...args}>
-      <CardHeader title="Outline Card" subtitle="Subtle outline" />
+      <CardHeader title="Valantic Primary" subtitle="Corporate Red Accent" />
       <CardBody>
-        A minimal outline card suitable for lists and dense layouts.
+        This card features the Valantic Red accent color (#FF0000) on the left edge. It is perfect for highlighting key content.
+      </CardBody>
+      <CardFooter>
+        <span className="text-sm text-gray-400">Last updated 2 mins ago</span>
+        <Button size="small" variant="solid" accent="primary" label="Action" />
+      </CardFooter>
+    </Card>
+  )
+};
+
+export const ValanticSecondary: Story = {
+  args: {
+    accent: "secondary",
+    variant: "soft",
+  },
+  render: (args) => (
+    <Card {...args}>
+      <CardHeader title="Valantic Secondary" subtitle="Dark Blue Accent" />
+      <CardBody>
+        This variant uses the Dark Blue accent (#1E293B) combined with a soft background style.
       </CardBody>
     </Card>
   )
 };
 
-export const SoftWithMedia: Story = {
-  args: { variant: "soft" },
+export const WithCoverImage: Story = {
+  args: {
+    coverImage: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    hoverable: true,
+  },
   render: (args) => (
-    <Card
-      {...args}
-      media={<img src="/vite.svg" alt="cover" className="h-40 w-full object-cover" />}
-    >
-      <CardHeader title="Soft Card" subtitle="With media" />
+    <Card {...args}>
+      <CardHeader 
+        title="Rich Media Card" 
+        subtitle="With cover image" 
+        action={<div className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">NEW</div>}
+      />
       <CardBody>
-        Soft background with gentle border. Media slot on top.
+        Cards can now feature a full-width cover image at the top. The image scales slightly on hover for a premium feel.
       </CardBody>
+      <CardFooter>
+        <Button size="small" variant="outline" label="Read More" />
+      </CardFooter>
     </Card>
   )
 };
+
+export const InteractiveGrid: Story = {
+  render: () => (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 p-8">
+      <Card hoverable variant="outline">
+        <CardHeader title="Feature One" />
+        <CardBody>Interactive card with hover lift effect.</CardBody>
+      </Card>
+      <Card hoverable variant="outline" accent="primary">
+        <CardHeader title="Feature Two" />
+        <CardBody>Interactive card with primary accent.</CardBody>
+      </Card>
+      <Card hoverable variant="outline" accent="secondary">
+        <CardHeader title="Feature Three" />
+        <CardBody>Interactive card with secondary accent.</CardBody>
+      </Card>
+    </div>
+  )
+};
+
 
 

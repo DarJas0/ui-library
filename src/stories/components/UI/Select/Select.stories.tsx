@@ -6,14 +6,16 @@ const meta: Meta<typeof Select> = {
   component: Select,
   tags: ["autodocs"],
   argTypes: {
-    size: { control: "inline-radio", options: ["small", "medium", "large"] },
-    color: { control: "inline-radio", options: ["purple", "red"] },
+    size: { control: "select", options: ["small", "medium", "large"] },
+    variant: { control: "select", options: ["default", "success", "error"] },
+    accent: { control: "select", options: ["primary", "secondary", "neutral"] },
   },
   args: {
     label: "Country",
     helperText: "Choose an option",
     size: "medium",
-    color: "purple",
+    variant: "default",
+    accent: "secondary",
   },
 };
 
@@ -30,12 +32,27 @@ export const Default: Story = {
   )
 };
 
-export const LargeRed: Story = {
-  args: { size: "large", color: "red" },
+export const PrimaryAccent: Story = {
+  args: {
+    accent: "primary",
+    label: "Primary Accent",
+  },
   render: (args) => (
     <Select {...args}>
       <option>Option A</option>
       <option>Option B</option>
+    </Select>
+  )
+};
+
+export const ErrorState: Story = {
+  args: {
+    variant: "error",
+    helperText: "Please select a valid option",
+  },
+  render: (args) => (
+    <Select {...args}>
+      <option>Invalid Option</option>
     </Select>
   )
 };
