@@ -73,7 +73,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
             sizeClasses[size],
             variant === "default" ? accentStyles[accent] : "",
             variantStyles[variant],
-            "border-gray-300 dark:border-gray-700", // Default border color override
+            "border-gray-300 dark:border-gray-700",
             icon && iconPosition === "left" && "pl-10",
             icon && iconPosition === "right" && "pr-10",
             disabled && "cursor-not-allowed bg-gray-50 text-gray-500 border-gray-200 shadow-none"

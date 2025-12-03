@@ -1,4 +1,4 @@
-// Export all components
+
 export { Button, type ButtonProps } from './components/Button/Button';
 export { Alert, type AlertProps, type AlertVariant } from './components/Alert/Alert';
 export { Badge, type BadgeProps } from './components/Badge/Badge';
@@ -39,10 +39,10 @@ export {
 export { CtaSection, type CtaProps } from './components/Cta/Cta';
 
 
-// Export layout components
+
 export { Navbar, type NavbarProps } from './components/Navigation/Navbar';
 export { Footer, type FooterProps } from './components/Footer/Footer';
 
-// Export hydration function
+
 export { hydrate } from './hydration';
 

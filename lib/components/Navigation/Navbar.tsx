@@ -30,8 +30,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+        <div className="flex h-16 items-center justify-between gap-4">
+
           <div className="flex-shrink-0 font-bold text-xl tracking-tight text-gray-900 dark:text-white">
             {typeof logo === "string" ? (
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Desktop Navigation */}
+
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {links.map((link) => (
@@ -63,12 +63,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Actions (Buttons etc) */}
+
           <div className="hidden md:block">
             {actions && <div className="flex items-center gap-4">{actions}</div>}
           </div>
 
-          {/* Mobile menu button (placeholder for now) */}
+
           <div className="-mr-2 flex md:hidden">
             <Button variant="ghost" accent="neutral" size="small" icon={
                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">

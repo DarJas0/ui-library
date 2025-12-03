@@ -3,23 +3,14 @@ import clsx from "clsx";
 import { Button } from "../Button/Button";
 
 export interface CtaProps extends React.HTMLAttributes<HTMLElement> {
-  /** Big headline above the card */
   headline: string;
-  /** Image source inside the card */
   imageSrc: string;
-  /** Accessible alt text for the image */
   imageAlt?: string;
-  /** Main body text; if omitted, children will be rendered instead */
   body?: React.ReactNode;
-  /** Label of the primary CTA button */
   primaryLabel: string;
-  /** Click handler for the primary CTA button */
   onPrimaryClick?: () => void;
-  /** Label of the secondary CTA button */
   secondaryLabel?: string;
-  /** Click handler for the secondary CTA button */
   onSecondaryClick?: () => void;
-  /** Background style variant */
   variant?: "default" | "dark" | "gradient";
 }
 
@@ -41,7 +32,7 @@ export const CtaSection: React.FC<CtaProps> = ({
 
   const bgStyles = {
     default: "bg-gray-50",
-    dark: "bg-[#1E293B]", // Valantic Dark Blue
+    dark: "bg-[#1E293B]",
     gradient: "bg-gradient-to-br from-[#1E293B] to-[#0F172A]",
   };
 
@@ -78,7 +69,7 @@ export const CtaSection: React.FC<CtaProps> = ({
           "rounded-3xl overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 p-8 md:p-12",
           cardStyles[variant]
         )}>
-          {/* Left: Image */}
+
           <div className="md:w-1/2 relative group">
             <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-10" />
             <img
@@ -88,7 +79,7 @@ export const CtaSection: React.FC<CtaProps> = ({
             />
           </div>
 
-          {/* Right: Content */}
+
           <div className="md:w-1/2 flex flex-col justify-center">
             <div className={clsx(
               "text-lg md:text-xl leading-relaxed space-y-4 font-medium",

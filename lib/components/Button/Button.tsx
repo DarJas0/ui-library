@@ -6,43 +6,13 @@ export type ButtonAccent = "primary" | "secondary" | "neutral";
 export type ButtonSize = "small" | "medium" | "large";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * The visual style of the button.
-   * @default "solid"
-   */
   variant?: ButtonVariant;
-  /**
-   * The color accent of the button.
-   * @default "primary"
-   */
   accent?: ButtonAccent;
-  /**
-   * The size of the button.
-   * @default "medium"
-   */
   size?: ButtonSize;
-  /**
-   * Whether the button should take up the full width of its container.
-   * @default false
-   */
   block?: boolean;
-  /**
-   * Whether the button is in a loading state.
-   * @default false
-   */
   loading?: boolean;
-  /**
-   * Optional icon to display.
-   */
   icon?: React.ReactNode;
-  /**
-   * Position of the icon relative to the label.
-   * @default "left"
-   */
   iconPosition?: "left" | "right";
-  /**
-   * The text label of the button.
-   */
   label?: string;
 }
 

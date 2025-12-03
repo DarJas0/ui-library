@@ -126,7 +126,7 @@ export const InteractiveGrid: Story = {
 export const CaseStudyGrid: Story = {
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-50 p-12">
-      {/* Card 1: V-ZUG */}
+
       <Card hoverable className="h-full flex flex-col">
         <CardImage 
           src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
@@ -151,7 +151,7 @@ export const CaseStudyGrid: Story = {
         </CardFooter>
       </Card>
 
-      {/* Card 2: Toyota */}
+
       <Card hoverable className="h-full flex flex-col">
         <CardImage 
           src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
@@ -174,12 +174,12 @@ export const CaseStudyGrid: Story = {
         </CardFooter>
       </Card>
 
-      {/* Card 3: COLONS */}
+
       <Card hoverable className="h-full flex flex-col">
         <CardImage 
           src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
           alt="COLONS Case Study"
-          logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" // Placeholder for COLONS
+          logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png"
         />
         <CardHeader 
           className="pb-0"

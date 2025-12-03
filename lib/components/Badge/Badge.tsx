@@ -6,24 +6,9 @@ export type BadgeAccent = "primary" | "secondary" | "success" | "warning" | "err
 export type BadgeSize = "small" | "medium";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /**
-   * The visual style of the badge.
-   * @default "soft"
-   */
   variant?: BadgeVariant;
-  /**
-   * The color accent of the badge.
-   * @default "neutral"
-   */
   accent?: BadgeAccent;
-  /**
-   * The size of the badge.
-   * @default "medium"
-   */
   size?: BadgeSize;
-  /**
-   * Optional icon to display.
-   */
   icon?: React.ReactNode;
 }
 

@@ -4,11 +4,8 @@ import clsx from "clsx";
 type HeroAlign = "left" | "center";
 
 export interface HeroProps extends React.HTMLAttributes<HTMLElement> {
-  /** Background image URL that fills the hero */
   backgroundImage?: string;
-  /** Align content block left or centered within the hero */
   align?: HeroAlign;
-  /** Dark overlay on top of the image for readability */
   overlay?: boolean;
 }
 
@@ -33,7 +30,7 @@ export const Hero: React.FC<HeroProps> = ({
       )}
       {...rest}
     >
-      {/* Background Image */}
+
       {backgroundImage && (
         <div className="pointer-events-none absolute inset-0 z-0">
           <img
@@ -47,13 +44,13 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       )}
 
-      {/* Soft vignette */}
+
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-secondary/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-secondary/70 to-transparent" />
       </div>
 
-      {/* Content container */}
+
       <div className="relative z-10 flex h-full w-full items-center justify-center px-6 py-10 sm:px-10 md:px-16">
         <div
           className={clsx(

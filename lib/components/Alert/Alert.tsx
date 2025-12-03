@@ -7,11 +7,8 @@ export interface AlertProps {
     title?: string;
     children: React.ReactNode;
     variant?: AlertVariant;
-    /** Show a dismiss button. If true, clicking X calls onClose */
     dismissible?: boolean;
-    /** Called when the dismiss button is clicked */
     onClose?: () => void;
-    /** Additional class names for the root */
     className?: string;
 }
 
@@ -19,12 +16,12 @@ const base =
     "relative overflow-hidden rounded-xl border shadow-sm text-sm transition-all duration-200";
 
 const tone: Record<AlertVariant, {
-    accent: string; // left bar
-    iconWrap: string; // circle background + ring
-    icon: string; // icon color
-    text: string; // text color
-    border: string; // border color
-    bg: string; // background color
+    accent: string;
+    iconWrap: string;
+    icon: string;
+    text: string;
+    border: string;
+    bg: string;
 }> = {
     info: {
         accent: "bg-secondary",
@@ -109,7 +106,7 @@ export const Alert: React.FC<AlertProps> = ({
 
     return (
         <div className={clsx(base, styles.border, styles.bg, className)} role={role}>
-            {/* Left accent */}
+
             <div className={clsx("absolute left-0 top-0 h-full w-1", styles.accent)} />
 
             <div className="p-4 pl-5 sm:p-5">

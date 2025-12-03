@@ -30,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({
     <footer className={clsx("bg-white text-gray-900 py-12 border-t border-gray-200 dark:bg-gray-900 dark:text-white dark:border-gray-800", className)}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Brand Column */}
+
           <div className="space-y-4">
             {logo && <div className="mb-4">{logo}</div>}
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({
             {socials && <div className="flex gap-4 pt-2">{socials}</div>}
           </div>
 
-          {/* Links Columns */}
+
           {columns.map((column) => (
             <div key={column.title}>
               <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white tracking-wider uppercase mb-4">

@@ -7,20 +7,8 @@ export type CardVariant = "elevated" | "outline" | "soft" | "ghost";
 export type CardAccent = "primary" | "secondary" | "none";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * The visual style of the card.
-   * @default "elevated"
-   */
   variant?: CardVariant;
-  /**
-   * The accent color of the card, typically a left border.
-   * @default "none"
-   */
   accent?: CardAccent;
-  /**
-   * Whether the card should interact on hover (lift + shadow).
-   * @default false
-   */
   hoverable?: boolean;
 
 }
@@ -33,18 +21,13 @@ const variantStyles: Record<CardVariant, string> = {
 };
 
 const accentStyles: Record<CardAccent, string> = {
-  primary: "border-l-4 border-l-[#FF514B]", // Valantic Primary Orange/Red
-  secondary: "border-l-4 border-l-[#3643B3]", // Valantic Secondary Blue
+  primary: "border-l-4 border-l-[#FF514B]",
+  secondary: "border-l-4 border-l-[#3643B3]",
   none: "",
 };
 
 
-/**
- * Card Component - Valantic Corporate Design
- * 
- * A flexible card container with support for images, headers, bodies, and footers.
- * Redesigned to match "Case Study" visuals with rounded corners and clean typography.
- */
+
 export const Card: React.FC<CardProps> = ({
   variant = "elevated",
   accent = "none",
@@ -65,22 +48,13 @@ export const Card: React.FC<CardProps> = ({
       )}
       {...rest}
     >
-      {/* 
-        We use React.Children to apply padding only to specific subcomponents if needed, 
-        or we just let the subcomponents handle their own padding logic via context or props.
-        For simplicity here, we apply padding to a wrapper or let the user control it via subcomponents.
-        However, to support the "Image at top without padding" pattern, we should NOT apply global padding here.
-        Instead, CardHeader/Body/Footer should handle their padding, or we wrap non-image children.
-      */}
+
       {children}
     </div>
   );
 };
 
 export interface CardImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  /**
-   * Optional logo to overlay on the image (top-left).
-   */
   logoSrc?: string;
 }
 
@@ -108,7 +82,7 @@ export const CardImage: React.FC<CardImageProps> = ({
           />
         </div>
       )}
-      {/* Optional gradient overlay for better text readability if needed, though design didn't specify */}
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
     </div>
   );
