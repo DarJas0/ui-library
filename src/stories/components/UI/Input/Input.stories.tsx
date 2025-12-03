@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "./Input";
+import { Input } from '../../../../../lib/components/Input/Input';
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -54,5 +54,3 @@ export const PrimaryAccent: Story = {
     label: "Primary Accent",
   },
 };
-
-

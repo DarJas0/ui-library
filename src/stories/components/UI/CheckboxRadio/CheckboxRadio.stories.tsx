@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Checkbox, Radio } from "./CheckboxRadio";
+import { Checkbox, Radio } from '../../../../../lib/components/CheckboxRadio/CheckboxRadio';
 
 const meta: Meta<typeof Checkbox> = {
   title: "UI/Checkbox & Radio",
@@ -40,5 +40,3 @@ export const RadioGroup: Story = {
     </div>
   ),
 };
-
-

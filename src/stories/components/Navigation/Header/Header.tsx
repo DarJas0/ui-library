@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../../UI/Button/Button';
+import { Button } from "../../../../../lib/components/Button/Button";
 
 type User = {
   name: string;

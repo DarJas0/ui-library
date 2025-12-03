@@ -7,9 +7,10 @@ export {
   CardHeader, 
   CardBody, 
   CardFooter,
+  CardImage,
   type CardProps,
   type CardHeaderProps,
-  type CardSectionProps
+  type CardImageProps
 } from './components/Card/Card';
 export { Input, type InputProps } from './components/Input/Input';
 export { Select, type SelectProps } from './components/Select/Select';
@@ -36,6 +37,11 @@ export {
   type HeroActionsProps
 } from './components/Hero/Hero';
 export { CtaSection, type CtaProps } from './components/Cta/Cta';
+
+
+// Export layout components
+export { Navbar, type NavbarProps } from './components/Navigation/Navbar';
+export { Footer, type FooterProps } from './components/Footer/Footer';
 
 // Export hydration function
 export { hydrate } from './hydration';

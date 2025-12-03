@@ -52,7 +52,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function 
   return (
     <div className={clsx("flex w-full flex-col gap-1.5", className)}>
       {label && (
-        <label htmlFor={selectId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-700")}>{label}</label>
+        <label htmlFor={selectId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-700 dark:text-gray-200")}>{label}</label>
       )}
       <div className="relative">
         <select
@@ -61,10 +61,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function 
           disabled={disabled}
           aria-describedby={describedBy}
           className={clsx(
-            "block w-full appearance-none rounded-lg border bg-white shadow-sm outline-none transition-all duration-200 focus:ring-4",
+            "block w-full appearance-none rounded-lg border bg-white dark:bg-gray-900 shadow-sm outline-none transition-all duration-200 focus:ring-4 dark:text-white",
             sizeClasses[size],
             variant === "default" ? accentStyles[accent] : "",
             variantStyles[variant],
+            "border-gray-300 dark:border-gray-700", // Default border color override
             disabled && "cursor-not-allowed bg-gray-50 text-gray-500 border-gray-200 shadow-none"
           )}
           {...rest}

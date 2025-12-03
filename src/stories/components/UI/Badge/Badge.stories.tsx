@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Badge } from "./Badge";
+import { Badge } from '../../../../../lib/components/Badge/Badge';
 
 const meta: Meta<typeof Badge> = {
   title: "UI/Badge",
@@ -67,5 +67,3 @@ export const WithIcon: Story = {
     accent: "warning",
   },
 };
-
-

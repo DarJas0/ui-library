@@ -75,7 +75,7 @@ export const Switch: React.FC<SwitchProps> = ({
         className={clsx(
           "relative inline-flex items-center rounded-full transition-colors duration-200 outline-none focus:ring-2 focus:ring-offset-2",
           currentSize.track,
-          current ? accentStyles[accent] : "bg-gray-300",
+          current ? accentStyles[accent] : "bg-gray-300 dark:bg-gray-600",
           accent === "secondary" && current && "focus:ring-secondary/40",
           accent === "primary" && current && "focus:ring-primary/40",
           !current && "focus:ring-gray-300/50",
@@ -94,7 +94,7 @@ export const Switch: React.FC<SwitchProps> = ({
       {label && (
         <span 
           id={labelId} 
-          className={clsx("text-sm select-none font-medium", disabled ? "text-gray-400" : "text-gray-700")}
+          className={clsx("text-sm select-none font-medium", disabled ? "text-gray-400" : "text-gray-700 dark:text-gray-200")}
           onClick={toggle}
           role="button"
           tabIndex={0}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Card, CardHeader, CardBody, CardFooter } from "./Card";
-import { Button } from "../../UI/Button/Button";
+import { Card, CardHeader, CardBody, CardFooter, CardImage } from '../../../../../lib/components/Card/Card';
+import { Button } from "../../../../../lib/components/Button/Button";
 
 const meta: Meta<typeof Card> = {
   title: "UI/Card",
@@ -8,7 +8,7 @@ const meta: Meta<typeof Card> = {
   tags: ["autodocs"],
   args: {
     variant: "elevated",
-    padding: "normal",
+
   },
   argTypes: {
     variant: {
@@ -19,10 +19,7 @@ const meta: Meta<typeof Card> = {
       control: "select",
       options: ["none", "primary", "secondary"],
     },
-    padding: {
-      control: "select",
-      options: ["none", "compact", "normal", "relaxed"],
-    },
+
   },
 };
 
@@ -84,11 +81,14 @@ export const ValanticSecondary: Story = {
 
 export const WithCoverImage: Story = {
   args: {
-    coverImage: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     hoverable: true,
   },
   render: (args) => (
     <Card {...args}>
+      <CardImage 
+        src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+        alt="Cover Image"
+      />
       <CardHeader 
         title="Rich Media Card" 
         subtitle="With cover image" 
@@ -118,6 +118,85 @@ export const InteractiveGrid: Story = {
       <Card hoverable variant="outline" accent="secondary">
         <CardHeader title="Feature Three" />
         <CardBody>Interactive card with secondary accent.</CardBody>
+      </Card>
+    </div>
+  )
+};
+
+export const CaseStudyGrid: Story = {
+  render: () => (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-50 p-12">
+      {/* Card 1: V-ZUG */}
+      <Card hoverable className="h-full flex flex-col">
+        <CardImage 
+          src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+          alt="V-ZUG Case Study"
+          logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/V-Zug_Logo.svg/2560px-V-Zug_Logo.svg.png"
+        />
+        <CardHeader 
+          className="pb-0"
+          title={
+            <span>
+              V-ZUG AI Assistant:<br />
+              Intelligente Produktberatung<br />
+              für eine nahtlose<br />
+              Customer Journey
+            </span>
+          }
+        />
+        <CardFooter className="mt-auto border-none pt-4">
+          <a href="#" className="text-primary font-bold uppercase text-xs tracking-wider flex items-center gap-2 hover:gap-3 transition-all">
+            Weiterlesen <span>&rarr;</span>
+          </a>
+        </CardFooter>
+      </Card>
+
+      {/* Card 2: Toyota */}
+      <Card hoverable className="h-full flex flex-col">
+        <CardImage 
+          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+          alt="Toyota Case Study"
+          logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/2560px-Toyota_carlogo.svg.png"
+        />
+        <CardHeader 
+          className="pb-0"
+          title={
+            <span>
+              Conversational AI bei Toyota<br />
+              verbessert den Kundenservice
+            </span>
+          }
+        />
+        <CardFooter className="mt-auto border-none pt-4">
+          <a href="#" className="text-primary font-bold uppercase text-xs tracking-wider flex items-center gap-2 hover:gap-3 transition-all">
+            Weiterlesen <span>&rarr;</span>
+          </a>
+        </CardFooter>
+      </Card>
+
+      {/* Card 3: COLONS */}
+      <Card hoverable className="h-full flex flex-col">
+        <CardImage 
+          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+          alt="COLONS Case Study"
+          logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" // Placeholder for COLONS
+        />
+        <CardHeader 
+          className="pb-0"
+          title={
+            <span>
+              COLONS optimiert<br />
+              Produktsuche und erschließt<br />
+              neue Märkte mit KI<br />
+              von valantic
+            </span>
+          }
+        />
+        <CardFooter className="mt-auto border-none pt-4">
+          <a href="#" className="text-primary font-bold uppercase text-xs tracking-wider flex items-center gap-2 hover:gap-3 transition-all">
+            Weiterlesen <span>&rarr;</span>
+          </a>
+        </CardFooter>
       </Card>
     </div>
   )

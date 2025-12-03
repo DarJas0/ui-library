@@ -2,6 +2,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   // WICHTIG: Hier wurde "./lib" hinzugefügt, damit deine Komponenten erkannt werden!
   content: [
     "./src/**/*.{ts,tsx,js,jsx,mdx}",

@@ -55,7 +55,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
   return (
     <div className={clsx("flex w-full flex-col gap-1.5", className)}> 
       {label && (
-        <label htmlFor={inputId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-700")}>{label}</label>
+        <label htmlFor={inputId} className={clsx("text-sm font-medium", disabled ? "text-gray-400" : "text-gray-700 dark:text-gray-200")}>{label}</label>
       )}
       <div className="relative">
         {icon && iconPosition === "left" && (
@@ -69,10 +69,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
           disabled={disabled}
           aria-describedby={describedBy}
           className={clsx(
-            "block w-full rounded-lg border bg-white shadow-sm outline-none transition-all duration-200 focus:ring-4",
+            "block w-full rounded-lg border bg-white dark:bg-gray-900 shadow-sm outline-none transition-all duration-200 focus:ring-4 dark:text-white dark:placeholder-gray-500",
             sizeClasses[size],
             variant === "default" ? accentStyles[accent] : "",
             variantStyles[variant],
+            "border-gray-300 dark:border-gray-700", // Default border color override
             icon && iconPosition === "left" && "pl-10",
             icon && iconPosition === "right" && "pr-10",
             disabled && "cursor-not-allowed bg-gray-50 text-gray-500 border-gray-200 shadow-none"

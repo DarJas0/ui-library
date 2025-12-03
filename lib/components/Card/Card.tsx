@@ -2,9 +2,9 @@ import React from "react";
 import clsx from "clsx";
 
 export type CardVariant = "elevated" | "outline" | "soft" | "ghost";
-export type CardAccent = "none" | "primary" | "secondary";
-export type CardPadding = "none" | "compact" | "normal" | "relaxed";
-export type CardSectionProps = React.HTMLAttributes<HTMLDivElement>;
+
+
+export type CardAccent = "primary" | "secondary" | "none";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -13,7 +13,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   variant?: CardVariant;
   /**
-   * The accent color of the card, aligning with Valantic CI.
+   * The accent color of the card, typically a left border.
    * @default "none"
    */
   accent?: CardAccent;
@@ -22,42 +22,34 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   hoverable?: boolean;
-  /**
-   * Optional cover image to display at the top of the card.
-   */
-  coverImage?: string;
-  /**
-   * Padding inside the card content.
-   * @default "normal"
-   */
-  padding?: CardPadding;
+
 }
 
 const variantStyles: Record<CardVariant, string> = {
-  elevated: "bg-white shadow-md border border-gray-100",
-  outline: "bg-white border border-gray-200",
-  soft: "bg-gray-50/50 border border-gray-100",
+  elevated: "bg-white shadow-md border border-gray-100 dark:bg-gray-900 dark:border-gray-800",
+  outline: "bg-white border border-gray-200 dark:bg-transparent dark:border-gray-700",
+  soft: "bg-gray-50/50 border border-gray-100 dark:bg-gray-800/50 dark:border-gray-700",
   ghost: "bg-transparent border-transparent",
 };
 
-const accentStyles: Record<Exclude<CardAccent, "none">, string> = {
-  primary: "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-[#FF0000]", // Valantic Red
-  secondary: "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-[#1E293B]", // Valantic Dark Blue
+const accentStyles: Record<CardAccent, string> = {
+  primary: "border-l-4 border-l-[#FF514B]", // Valantic Primary Orange/Red
+  secondary: "border-l-4 border-l-[#3643B3]", // Valantic Secondary Blue
+  none: "",
 };
 
-const paddingStyles: Record<CardPadding, string> = {
-  none: "p-0",
-  compact: "p-4",
-  normal: "p-6",
-  relaxed: "p-8",
-};
 
+/**
+ * Card Component - Valantic Corporate Design
+ * 
+ * A flexible card container with support for images, headers, bodies, and footers.
+ * Redesigned to match "Case Study" visuals with rounded corners and clean typography.
+ */
 export const Card: React.FC<CardProps> = ({
   variant = "elevated",
   accent = "none",
   hoverable = false,
-  coverImage,
-  padding = "normal",
+
   className,
   children,
   ...rest
@@ -65,27 +57,59 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       className={clsx(
-        "relative flex flex-col overflow-hidden rounded-xl transition-all duration-300 ease-out",
+        "relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300 ease-out",
         variantStyles[variant],
-        accent !== "none" && accentStyles[accent],
+        accentStyles[accent],
         hoverable && "hover:-translate-y-1 hover:shadow-xl cursor-pointer",
         className
       )}
       {...rest}
     >
-      {coverImage && (
-        <div className="relative h-48 w-full overflow-hidden bg-gray-100">
-          <img
-            src={coverImage}
-            alt="Card cover"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+      {/* 
+        We use React.Children to apply padding only to specific subcomponents if needed, 
+        or we just let the subcomponents handle their own padding logic via context or props.
+        For simplicity here, we apply padding to a wrapper or let the user control it via subcomponents.
+        However, to support the "Image at top without padding" pattern, we should NOT apply global padding here.
+        Instead, CardHeader/Body/Footer should handle their padding, or we wrap non-image children.
+      */}
+      {children}
+    </div>
+  );
+};
+
+export interface CardImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  /**
+   * Optional logo to overlay on the image (top-left).
+   */
+  logoSrc?: string;
+}
+
+export const CardImage: React.FC<CardImageProps> = ({
+  src,
+  alt,
+  logoSrc,
+  className,
+  ...rest
+}) => {
+  return (
+    <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-gray-100 dark:bg-gray-800 shrink-0">
+      <img
+        src={src}
+        alt={alt}
+        className={clsx("w-full h-full object-cover transition-transform duration-700 hover:scale-105", className)}
+        {...rest}
+      />
+      {logoSrc && (
+        <div className="absolute top-6 left-6 w-auto h-12 md:h-14">
+          <img 
+            src={logoSrc} 
+            alt="Logo Overlay" 
+            className="w-full h-full object-contain drop-shadow-md" 
           />
         </div>
       )}
-      
-      <div className={clsx("flex flex-col flex-grow", paddingStyles[padding])}>
-        {children}
-      </div>
+      {/* Optional gradient overlay for better text readability if needed, though design didn't specify */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
     </div>
   );
 };
@@ -105,10 +129,18 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
   ...rest
 }) => {
   return (
-    <div className={clsx("flex items-start justify-between gap-4 mb-4", className)} {...rest}>
+    <div className={clsx("flex items-start justify-between gap-4 px-6 pt-6 mb-2", className)} {...rest}>
       <div className="flex flex-col gap-1">
-        {title && <h3 className="text-lg font-bold text-gray-900 leading-tight">{title}</h3>}
-        {subtitle && <p className="text-sm text-gray-500 font-medium">{subtitle}</p>}
+        {title && (
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight">
+            {title}
+          </h3>
+        )}
+        {subtitle && (
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">
+            {subtitle}
+          </p>
+        )}
         {children}
       </div>
       {action && <div className="flex-shrink-0">{action}</div>}
@@ -122,7 +154,7 @@ export const CardBody: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => {
   return (
-    <div className={clsx("text-base text-gray-600 flex-grow", className)} {...rest}>
+    <div className={clsx("px-6 py-2 text-base text-gray-600 dark:text-gray-300 flex-grow leading-relaxed", className)} {...rest}>
       {children}
     </div>
   );
@@ -134,7 +166,7 @@ export const CardFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => {
   return (
-    <div className={clsx("mt-6 flex items-center justify-between pt-4 border-t border-gray-100", className)} {...rest}>
+    <div className={clsx("px-6 pb-6 pt-4 mt-auto flex items-center justify-between border-t border-gray-100 dark:border-gray-800", className)} {...rest}>
       {children}
     </div>
   );

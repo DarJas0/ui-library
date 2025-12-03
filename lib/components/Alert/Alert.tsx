@@ -28,43 +28,43 @@ const tone: Record<AlertVariant, {
 }> = {
     info: {
         accent: "bg-secondary",
-        iconWrap: "bg-secondary/10 ring-secondary/20",
-        icon: "text-secondary",
-        text: "text-gray-800",
-        border: "border-gray-200",
-        bg: "bg-white",
+        iconWrap: "bg-secondary/10 ring-secondary/20 dark:bg-secondary/20 dark:ring-secondary/40",
+        icon: "text-secondary dark:text-secondary-light",
+        text: "text-gray-800 dark:text-gray-100",
+        border: "border-gray-200 dark:border-secondary/20",
+        bg: "bg-white dark:bg-secondary/5",
     },
     success: {
         accent: "bg-green-500",
-        iconWrap: "bg-green-50 ring-green-200",
-        icon: "text-green-600",
-        text: "text-gray-800",
-        border: "border-green-200",
-        bg: "bg-green-50/50",
+        iconWrap: "bg-green-50 ring-green-200 dark:bg-green-500/10 dark:ring-green-500/30",
+        icon: "text-green-600 dark:text-green-400",
+        text: "text-gray-800 dark:text-gray-100",
+        border: "border-green-200 dark:border-green-500/20",
+        bg: "bg-green-50/50 dark:bg-green-500/5",
     },
     warning: {
         accent: "bg-[#FF7A00]",
-        iconWrap: "bg-[#FF7A00]/10 ring-[#FF7A00]/20",
-        icon: "text-[#FF7A00]",
-        text: "text-gray-800",
-        border: "border-amber-200",
-        bg: "bg-amber-50/50",
+        iconWrap: "bg-[#FF7A00]/10 ring-[#FF7A00]/20 dark:bg-[#FF7A00]/10 dark:ring-[#FF7A00]/30",
+        icon: "text-[#FF7A00] dark:text-[#FF7A00]",
+        text: "text-gray-800 dark:text-gray-100",
+        border: "border-amber-200 dark:border-[#FF7A00]/20",
+        bg: "bg-amber-50/50 dark:bg-[#FF7A00]/5",
     },
     error: {
         accent: "bg-[#FF0000]",
-        iconWrap: "bg-[#FF0000]/10 ring-[#FF0000]/20",
-        icon: "text-[#FF0000]",
-        text: "text-gray-800",
-        border: "border-red-200",
-        bg: "bg-red-50/50",
+        iconWrap: "bg-[#FF0000]/10 ring-[#FF0000]/20 dark:bg-[#FF0000]/10 dark:ring-[#FF0000]/30",
+        icon: "text-[#FF0000] dark:text-[#FF514B]",
+        text: "text-gray-800 dark:text-gray-100",
+        border: "border-red-200 dark:border-[#FF0000]/20",
+        bg: "bg-red-50/50 dark:bg-[#FF0000]/5",
     },
     neutral: {
         accent: "bg-gray-500",
-        iconWrap: "bg-gray-100 ring-gray-200",
-        icon: "text-gray-600",
-        text: "text-gray-600",
-        border: "border-gray-200",
-        bg: "bg-gray-50/50",
+        iconWrap: "bg-gray-100 ring-gray-200 dark:bg-gray-700 dark:ring-gray-600",
+        icon: "text-gray-600 dark:text-gray-300",
+        text: "text-gray-600 dark:text-gray-300",
+        border: "border-gray-200 dark:border-gray-700",
+        bg: "bg-gray-50/50 dark:bg-gray-800/50",
     },
 };
 
@@ -118,7 +118,7 @@ export const Alert: React.FC<AlertProps> = ({
                         <span className={clsx(styles.icon)}>{iconFor[variant]}</span>
                     </span>
                     <div className={clsx("flex-1 pt-0.5", styles.text)}>
-                        {title && <div className="mb-1 text-sm font-semibold leading-none text-gray-900">{title}</div>}
+                        {title && <div className="mb-1 text-sm font-semibold leading-none text-gray-900 dark:text-white">{title}</div>}
                         <div className="text-sm leading-relaxed opacity-90">{children}</div>
                     </div>
 

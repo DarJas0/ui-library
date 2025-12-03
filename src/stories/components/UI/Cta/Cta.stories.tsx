@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CtaSection } from "./Cta";
-import type { CtaProps } from "./Cta";
+import { CtaSection, type CtaProps } from '../../../../../lib/components/Cta/Cta';
 
 const meta: Meta<typeof CtaSection> = {
   title: "Example/Cta",

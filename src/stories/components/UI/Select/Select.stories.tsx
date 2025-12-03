@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Select } from "./Select";
+import { Select } from '../../../../../lib/components/Select/Select';
 
 const meta: Meta<typeof Select> = {
   title: "UI/Select",
@@ -56,5 +56,3 @@ export const ErrorState: Story = {
     </Select>
   )
 };
-
-

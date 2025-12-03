@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  Hero,
-  HeroActions,
-  HeroContent,
-  HeroSubtitle,
-  HeroTitle,
-} from "./Hero";
-import { Button } from "../Button/Button";
+import { Hero, HeroContent, HeroTitle, HeroSubtitle, HeroActions } from '../../../../../lib/components/Hero/Hero';
+import { Button } from '../../../../../lib/components/Button/Button';
 
 const meta: Meta<typeof Hero> = {
   title: "Example/Hero",
@@ -81,4 +75,3 @@ export const NoImage: Story = {
     </Hero>
   ),
 };
-

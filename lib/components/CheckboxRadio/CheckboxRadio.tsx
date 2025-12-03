@@ -4,9 +4,9 @@ import clsx from "clsx";
 export type ControlAccent = "primary" | "secondary" | "neutral";
 
 const accentStyles: Record<ControlAccent, string> = {
-  primary: "text-primary focus:ring-primary/40 border-gray-300 checked:bg-primary checked:border-primary",
-  secondary: "text-secondary focus:ring-secondary/40 border-gray-300 checked:bg-secondary checked:border-secondary",
-  neutral: "text-gray-900 focus:ring-gray-500/40 border-gray-300 checked:bg-gray-900 checked:border-gray-900",
+  primary: "text-primary focus:ring-primary/40 border-gray-300 dark:border-gray-600 checked:bg-primary checked:border-primary",
+  secondary: "text-secondary focus:ring-secondary/40 border-gray-300 dark:border-gray-600 checked:bg-secondary checked:border-secondary",
+  neutral: "text-gray-900 focus:ring-gray-500/40 border-gray-300 dark:border-gray-600 checked:bg-gray-900 checked:border-gray-900",
 };
 
 interface BaseProps {
@@ -24,7 +24,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
   const describedBy = helperText ? `${inputId}-help` : undefined;
   return (
     <div className={clsx("flex flex-col gap-1", className)}> 
-      <label className={clsx("inline-flex items-start gap-2.5 text-sm cursor-pointer", disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-700")}>
+      <label className={clsx("inline-flex items-start gap-2.5 text-sm cursor-pointer", disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-700 dark:text-gray-200")}>
         <div className="relative flex items-center mt-0.5">
           <input
             id={inputId}
@@ -33,7 +33,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
             disabled={disabled}
             aria-describedby={describedBy}
             className={clsx(
-              "peer h-4 w-4 appearance-none rounded border bg-white transition-all duration-200 outline-none focus:ring-2 focus:ring-offset-1",
+              "peer h-4 w-4 appearance-none rounded border bg-white dark:bg-gray-900 transition-all duration-200 outline-none focus:ring-2 focus:ring-offset-1",
               accentStyles[accent],
               disabled && "bg-gray-100 border-gray-200 checked:bg-gray-400 checked:border-gray-400"
             )}
@@ -70,7 +70,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Rad
   const describedBy = helperText ? `${inputId}-help` : undefined;
   return (
     <div className={clsx("flex flex-col gap-1", className)}> 
-      <label className={clsx("inline-flex items-start gap-2.5 text-sm cursor-pointer", disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-700")}>
+      <label className={clsx("inline-flex items-start gap-2.5 text-sm cursor-pointer", disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-700 dark:text-gray-200")}>
         <div className="relative flex items-center mt-0.5">
           <input
             id={inputId}
@@ -80,7 +80,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Rad
             disabled={disabled}
             aria-describedby={describedBy}
             className={clsx(
-              "peer h-4 w-4 appearance-none rounded-full border bg-white transition-all duration-200 outline-none focus:ring-2 focus:ring-offset-1",
+              "peer h-4 w-4 appearance-none rounded-full border bg-white dark:bg-gray-900 transition-all duration-200 outline-none focus:ring-2 focus:ring-offset-1",
               accentStyles[accent],
               disabled && "bg-gray-100 border-gray-200 checked:bg-gray-400 checked:border-gray-400"
             )}
